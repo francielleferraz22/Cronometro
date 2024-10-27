@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+    
+    *{
+        margin: 0;
+        padding: 0;
+    }
+        body{
+            background: #DDA0DD;
+            color: #000000;
+            font-family: sans-sarif;
+            font-size: 22px;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .outer{
+            width: 245px;
+            height: 245px;
+            border-radius: 50%;
+            background-color: black;
+            align-items: center;
+            display: block;
+        }
+        
+        .inner{
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background-color: #DDA0DD;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .container{
+            margin: auto;
+            text-align: center;
+            max-width: 1000px
+            margin: 100px;
+            
+        }
+        button{
+            height: 2.3em;
+            width: 5.5em;
+            border: none;
+            color: black;
+            border: 1px solid gray;
+            border-radius: 10px;
+            cursor: pointer;
+           
+        }
+        button:hover{
+            background-color: #E6E6FA;
+        }
+        
+        .init-btn{
+            background-color: #DDA0DD;
+        }
+        
+        .pause-btn{
+            background-color: #DDA0DD;
+        }
+        
+        .stop-btn{
+            background-color: #DDA0DD;
+        }
+        
+        strong{
+           color: #C71585; 
+        }
+        h2{
+            margin: 100px;
+            padding-right: 40px;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="container">
+   <div class="watch">
+       <div class="outer">
+           <div class="inner">
+    <h1 id="watch">00:00:00</h1>
+    </div>
+    </div>
+    </div>
+    <button class="init-btn" onclick="init()">Play</button>
+    <button class="pause-btn" onclick="pause()">Pause</button>
+    <button class="stop-btn" onclick="clearAll()">Reset</button>
+    </div>
+<h2>Cronômetro<br /><br />Powered by <strong>Francielle Sousa</strong></h2>
+<script>
+    const watchDocument = document.querySelector("#watch");
+    
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+    let interval;
+    
+     function init(){
+         watch();
+         interval = setInterval(watch, 1000);
+     }
+    
+    const pause = () => {
+        clearInterval(interval);
+    }
+    
+    const clearAll = () => {
+        clearInterval(interval);
+        seconds = 0;
+        minutes = 0;
+        watchDocument.innerHTML = "00:00:00";
+    }
+    
+    const digitZero = (digit) => {
+        if(digit < 10) {
+            return `0${digit}`;
+        } else {
+            return digit
+        }
+    }
+    
+    function watch() {
+        seconds++;
+       
+        if(seconds === 60) {
+            minutes++;
+            seconds = 0;
+        }
+        
+        if (minutes === 60) {
+            miutes = 0;
+            hours++;
+        }
+        
+        watchDocument.innerHTML =digitZero(hours) + ":" + digitZero(minutes) + ":" + digitZero(seconds);
+    }
+</script>
+</body>
+</html>
